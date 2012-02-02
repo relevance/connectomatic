@@ -10,7 +10,6 @@ module Connectomatic
           # Always reset the default connection when running a migration
           ::ActiveRecord::Migrator.class_eval do
             def ddl_transaction_with_reset(*args, &block)
-              puts "resetting!"
               ::ActiveRecord::Base.establish_connection ::ActiveRecord::Base.configurations[Rails.env]
               ddl_transaction_without_reset(*args, &block)
             end

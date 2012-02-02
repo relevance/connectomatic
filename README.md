@@ -35,7 +35,7 @@ To run a migration on an alternate database, just invoke the `self.connectomatic
 ````ruby
 class CreateSomething < ActiveRecord::Migration
       
-      self.connectomatic(:my_database)
+      connectomatic(:my_database)
       
       def self.up 
           #
