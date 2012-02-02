@@ -30,18 +30,18 @@ end
 
 #### Migrations
 
-To run a migration on an alternate database, just invoke the `connectomatic` method in your migration class and pass it the name of the database you'd like it to use.
+To run a migration on an alternate database, just invoke the `self.connectomatic` method in your migration class and pass it the name of the database you'd like it to use.
 
 ````ruby
 class CreateSomething < ActiveRecord::Migration
       
-      connectomatic(:my_database)
+      self.connectomatic(:my_database)
       
-      def up 
+      def self.up 
           #
       end
 
-      def down
+      def self.down
           #
       end
 end
