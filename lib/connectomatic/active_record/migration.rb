@@ -6,9 +6,21 @@ module Connectomatic
       module ClassMethods
 
         def self.included(base)
+
+          # Always reset the default connection when running a migration
+          ::ActiveRecord::Migrator.class_eval do
+            def ddl_transaction_with_reset(*args, &block)
+              puts "resetting!"
+              ::ActiveRecord::Base.establish_connection ::ActiveRecord::Base.configurations[Rails.env]
+              ddl_transaction_without_reset(*args, &block)
+            end
+            alias_method_chain :ddl_transaction, :reset
+          end
+
           base.class_eval do
             def self.connectomatic(db_name)
               ::ActiveRecord::Base.establish_connection Connectomatic.config_for(db_name)
+              ::ActiveRecord::Base.connection.initialize_schema_migrations_table
             end
           end
         end
