@@ -46,6 +46,11 @@ class CreateSomething < ActiveRecord::Migration
       end
 end
 ````
+
+#### Explicitly specifying the default Rails database
+
+Just pass `:default` to the `connectomatic` method in a Migration or a Model.
+
 ## Credits
 
 Inspiration for this gem (and several of the techniques used) were provided by Chris Herring's connection_ninja gem. (https://github.com/cherring/connection_ninja)
