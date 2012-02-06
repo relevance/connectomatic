@@ -6,7 +6,6 @@ module Connectomatic
       module ClassMethods
 
         def connectomatic(db_name)
-          puts "establishing connection!"
           establish_connection Connectomatic.config_for(db_name)
         end
 
