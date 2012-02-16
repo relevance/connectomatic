@@ -2,7 +2,6 @@ require 'rake'
 
 namespace :db do
 
-  Rake::Task["db:create:all"].invoke
   load 'active_record/railties/databases.rake'
 
   def each_local_config
@@ -20,6 +19,7 @@ namespace :db do
 
     desc "Creates all databases defined in databases/*.yml"
     task :everything do
+      Rake::Task["db:create:all"].invoke
       each_local_config do |config|
         create_database(config)
       end
